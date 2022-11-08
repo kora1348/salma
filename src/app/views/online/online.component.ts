@@ -6,11 +6,11 @@ import { SessionAction } from '../../store/session/session.actions';
 import { SessionState } from '../../store/session/session.state';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  selector: 'app-online',
+  templateUrl: './online.component.html',
+  styleUrls: ['./online.component.css'],
 })
-export class DashboardComponent implements OnInit {
+export class OnlineComponent implements OnInit {
   @Select(SessionState.user) user$!: Observable<string>;
   @Select(SessionState.islogged) islogged$!: Observable<string>;
   @Select(SessionState.connexionDate) connexionDate$!: Observable<string>;
@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
       id: '1',
       class: 'bx bx-lock-alt',
       item: 'Administration',
-      route: '/dashboard/administration',
+      route: '/online/administration',
       arrowDown: 'bx bx-chevron-down',
       arrowUp: 'bx bx-chevron-up',
 
@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
         {
           class: 'bx bxs-bank',
           item: 'Corporate actions',
-          route: '/dashboard/administration/corporate-action',
+          route: '/online/administration/corporate-action',
         },
        
       ],

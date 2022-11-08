@@ -19,7 +19,7 @@ export class IsActivate implements CanActivate {
         return this.islogged$.pipe(
             map(res => {
                 if (res) {
-                    return this.router.parseUrl('/dashboard/administration/corporate-action');
+                    return this.router.parseUrl('/online/administration/corporate-action');
                 } else {
                     return true;
 
