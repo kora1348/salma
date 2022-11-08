@@ -28,14 +28,7 @@
           </li>
         </ul>
       </li>
-      <li class="log_out">
-        <a href="#" (click)="logoff() ">
-            <i class="bx bx-log-out"></i>
-            <span class="link_name">Log out</span>
-        </a>
-    </li>
     </ul>
-
   </div>
   <section class="home-section">
     <div class="home-header">
@@ -51,7 +44,8 @@
           <div class="bar"></div>
         </label>
       </div>
-      <div class="title">Your last login: 21/10/2022 12:00:14 </div>
+      <div class="title"><a href="#" (click)="logoff() ">Logout</a></div>
+      <!-- <div class="title">Your last login: 21/10/2022 12:00:14 </div> -->
     </div>
     <div class="home-view">
       <router-outlet></router-outlet>
