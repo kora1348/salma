@@ -1,31 +1,45 @@
-<div class="wrapper">
-    <div class="logo">
-        <img src="assets/images/logoLogin.png" alt="img" />
-
+<div class="container">
+    <div class="signin">
+    <form (ngSubmit)="login()" class="sign-in-form">
+    <img src="https://zupimages.net/up/22/42/jdfu.png" alt="" class="image">
+    <h2 class="title">Sign in</h2>
+    <div class="input-field">
+    <i class="fas fa-user"></i>
+    <input type="text" name="user" [(ngModel)]="loginForm.user" required maxlength="4" placeholder="Username">
     </div>
-    <div class="title">
-        <p>Veuillez vous identifier</p>
+    <div class="input-field">
+    <i class="fas fa-lock"></i>
+    <input type="password" name="password" [(ngModel)]="loginForm.password" required maxlength="4" placeholder="Password">
     </div>
-
-    <div class="form-login">
-        <form (ngSubmit)="login()">
- 
-            <div class="input_field">
-                <label>Username </label>
-                <input type="text" class="input" name="user" [(ngModel)]="loginForm.user" required maxlength="4">
-            </div>
-
-            <div class="input_field">
-                <label>Password</label>
-                <input type="password" class="input" name="password" [(ngModel)]="loginForm.password" required maxlength="4">
-            </div>
-
-            <div class="btn">
-                <input type="submit" value="Connexion" class="sign_btn">
-            </div>
-
-        </form>
+    <input type="submit" value="Login" class="btn">
+    <p class="icon-text">Argenta - Logins</p>
+    <div class="icon-block">
+    <a href="#" class="item-icon">
+    <i class="fab fa-google"></i>
+    </a>
+    <a href="" class="item-icon">
+    <i class="fab fa-google"></i>
+    </a>
+    <a href="" class="item-icon">
+    <i class="fab fa-google"></i>
+    </a>
     </div>
+    </form>
+    <div class="signin_item_block sign-in-block-form"></div>
+    
+    </div>
+    <div class="panels-container">
+    <div class="panel left-panel"></div>
+    <div class="panel right-panel">
+    <div class="content">
+    <h3>Bienvenue sur le site d'Argenta</h3>
+    <p>Veuillez choisir votre langue s'il vous plait</p>
+    <button class="btn" id="language-btn">Français</button>
+    <button class="btn" id="language-btn">Néerlandais</button>
+    </div>
+    </div>
+    </div>
+    </div>
+    
 
-</div>
 
