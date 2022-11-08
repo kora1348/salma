@@ -10,11 +10,11 @@ import { Login } from './login';
 
 
 @Component({
-  selector: 'app-singin',
-  templateUrl: './singin.component.html',
-  styleUrls: ['./singin.component.css']
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css']
 })
-export class SinginComponent implements OnInit {
+export class SigninComponent implements OnInit {
   loginForm: Login = new Login();
   ngUnsubscribe = new Subject<void>();
 

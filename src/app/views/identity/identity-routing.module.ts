@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IsActivate } from '../../core/isActivate.guard';
 import { IdentityComponent } from './identity.component';
-import { SinginComponent } from './views/singin/singin.component';
+import { SigninComponent } from './views/signin/signin.component';
+
 
 export const IDENTITY_ROUTES: Routes = [
   {
@@ -13,11 +14,11 @@ export const IDENTITY_ROUTES: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'singin',
+        redirectTo: 'signin',
       },
       {
-        path: 'singin',
-        component: SinginComponent,
+        path: 'signin',
+        component: SigninComponent,
       },
     ],
   },

@@ -6,12 +6,13 @@ import { RouterModule } from '@angular/router';
 import { SessionService } from '../../services/sessions.service';
 import { IdentityRoutingModule } from './identity-routing.module';
 import { IdentityComponent } from './identity.component';
-import { SinginComponent } from './views/singin/singin.component';
+import { SigninComponent } from './views/signin/signin.component';
+
 
 @NgModule({
   declarations: [
     IdentityComponent,
-    SinginComponent,
+    SigninComponent,
 
   ],
   imports: [
