@@ -4,6 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { SessionAction } from '../../store/session/session.actions';
 import { SessionState } from '../../store/session/session.state';
+import { MenuSidebar } from './types/menuSidebar';
 
 @Component({
   selector: 'app-online',
@@ -15,52 +16,61 @@ export class OnlineComponent implements OnInit {
   @Select(SessionState.islogged) islogged$!: Observable<string>;
   @Select(SessionState.connexionDate) connexionDate$!: Observable<string>;
 
-  showSideBar: boolean = false;
+  activeItem: any;
 
-  selectedTab: string;
+  openSidebar: boolean = true;
 
-  showSubmenu: any[] = [];
-  showInfo: any[] = [];
-
-  menus: any[] = [
-    /* Administration */
+  menuSidebar: MenuSidebar[] = [
     {
-      id: '1',
-      class: 'bx bx-lock-alt',
-      item: 'Administration',
-      route: '/online/administration',
-      arrowDown: 'bx bx-chevron-down',
-      arrowUp: 'bx bx-chevron-up',
-
-      submenus: [
-
-
+      link_name: 'Administration',
+      link: null,
+      icon: 'bx bx-collection',
+      active: false,
+      sub_menu: [
         {
-          class: 'bx bxs-bank',
-          item: 'Corporate actions',
-          route: '/online/administration/corporate-action',
+          link_name: 'Corporate actions',
+          link: '/online/administration/corporate-action',
         },
-       
+        {
+          link_name: 'Contact',
+          link: '/category/contact',
+        },
       ],
     },
-
+    {
+      link_name: 'Markets',
+      link: null,
+      icon: 'bx bx-collection',
+      active: false,
+      sub_menu: [
+        {
+          link_name: 'Indice',
+          link: '/markets/indice',
+        },
+      ],
+    },
   ];
 
   constructor(private store: Store, private router: Router) {}
 
   ngOnInit() {}
 
-  toggleSideBar() {
-    this.showSideBar = !this.showSideBar;
+  showSubmenu(item: any) {
+    if (item.link_name == this.activeItem) {
+      this.activeItem = undefined;
+    } else {
+      this.activeItem = item.link_name;
+    }
   }
 
-  toggleMenu(index: number) {
-    this.showSubmenu[index] = !this.showSubmenu[index];
-  }
-
-  toggleSubmenu(event: MouseEvent, item: any) {
-    event.stopPropagation();
-    this.showInfo[item] = !this.showInfo[item];
+  selectMenu(parentMenu: { link_name: string }): void {
+    this.menuSidebar.forEach((menu) => {
+      if (menu.link_name !== parentMenu.link_name) {
+        menu.active = false;
+      } else {
+        menu.active = !menu.active;
+      }
+    });
   }
 
   logoff(): void {
@@ -71,11 +81,4 @@ export class OnlineComponent implements OnInit {
       })
     );
   }
-
-  isLinkActive(menus) {
-    const url = this.router.url;
-    return menus.id === url.substring(1, url.indexOf('?'));
-  }
-
 }
-

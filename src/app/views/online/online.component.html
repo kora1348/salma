@@ -1,53 +1,63 @@
-<div class="sidebar" [ngClass]="{ active: showSideBar }">
+<div class="sidebar" [class.sidebar-close]="!openSidebar">
     <div class="logo-details">
-        <span class="logo_name">
-          <img class="logo_dashboard" src="assets/images/logoDashBoard.png" style="">
-      </span>
+      <img src="https://zupimages.net/up/22/42/refj.png" />
     </div>
-    <ul class="nav-links" *ngFor="let menu of menus; let i = index" [class.active]="isLinkActive(menu)">
-        <li [ngClass]="{ selected: selectedTab === menu.route }">
-            <a routerLink="{{ '/'+menu.id.route }}" [queryParams]="{ activeOnly: false }" (click)="toggleMenu(i); selectedTab = menu.route">
-                <i class="{{ menu.class }}"></i>
-                <span class="links_name"> {{ menu.item }} </span>
-                <i class="{{ menu.arrowDown }} iconArrow" *ngIf="selectedTab !== menu.route || !showSubmenu[i]"></i>
-                <i class="{{ menu.arrowUp }} iconArrow " *ngIf="selectedTab === menu.route && showSubmenu[i]"></i>
-            </a>
-        </li>
-
-
-        <ng-container *ngFor="let submenu of menu.submenus; let j = index">
-            <li *ngIf="showSubmenu[i]">
-                <a routerLink="{{ submenu.route }}">
-                    <i class="{{ submenu.class }}"></i>
-                    <span class="links_name"> {{ submenu.item }} </span>
-                </a>
-            </li>
-        </ng-container>
-
-        <li class="log_out">
-            <a href="#" (click)="logoff() ">
-                <i class="bx bx-log-out"></i>
-                <span class="links_name">Log out</span>
-            </a>
-        </li>
-
-    </ul>
-</div>
-<section class="home-section">
-    <nav>
-        <div class="sidebar-button">
-            <div class="menu-container">
-                <i class="bx bx-menu sidebarBtn" (click)="toggleSideBar()"></i>
-                <span class="dashboard">Dashboard</span>
-            </div>
-            <div class="menu-summary-container">
-                <span class="user">Utilisateur: {{ user$ | async }} </span>
-                <span class="last-connection">Votre dernière connexion:
-            {{ connexionDate$ | async | date: 'dd-MM-yyyy à HH:mm:ss' }}
-          </span>
-            </div>
+    <ul class="nav-links" id="nav-links">
+      <li
+        *ngFor="let item of menuSidebar"
+        [class.showMenu]="activeItem == item.link_name"
+        #itemEl
+      >
+        <div
+          *ngIf="item.sub_menu.length > 0"
+          class="dropdown-title"
+          (click)="showSubmenu(item)"
+        >
+          <a (click)="selectMenu(item)">
+            <i [class]="item.icon"></i>
+            <span class="link_name">{{ item.link_name }}</span>
+          </a>
+          <i class="bx bxs-chevron-down arrow"></i>
         </div>
-    </nav>
-    <router-outlet></router-outlet>
-</section>
+        <ul class="sub-menu" [class.blank]="item.sub_menu.length == 0">
+          <li>
+            <a class="link_name">{{ item.link_name }}</a>
+          </li>
+          <li *ngFor="let item_sub of item.sub_menu" routerLinkActive="active">
+            <a [routerLink]="[item_sub.link]">{{ item_sub.link_name }}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="log_out">
+        <a href="#" (click)="logoff() ">
+            <i class="bx bx-log-out"></i>
+            <span class="link_name">Log out</span>
+        </a>
+    </li>
+    </ul>
 
+  </div>
+  <section class="home-section">
+    <div class="home-header">
+      <div class="hamburger-menu">
+        <input
+          type="checkbox"
+          id="checkbox-hamburger-menu"
+          [(ngModel)]="openSidebar"
+        />
+        <label class="label-hamburger-menu" for="checkbox-hamburger-menu">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </label>
+      </div>
+      <div id="header-banner">
+        <img src="https://zupimages.net/up/22/42/zfir.gif" />
+      </div>
+      <div class="title">Your last login: 21/10/2022 12:00:14</div>
+    </div>
+    <div class="home-view">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+  
