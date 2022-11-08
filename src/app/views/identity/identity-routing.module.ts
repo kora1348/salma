@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IsActivate } from '../../core/isActivate.guard';
 import { IdentityComponent } from './identity.component';
-import { SinginComponent } from './view/singin/singin.component';
+import { SinginComponent } from './views/singin/singin.component';
 
 export const IDENTITY_ROUTES: Routes = [
   {
