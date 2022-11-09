@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CanActivateTeam } from '../../core/canActivateTeam.guard';
-
+import { CanActivateTeam } from 'src/app/core/canActivateTeam.guard';
 import { OnlineComponent } from './online.component';
 
 
